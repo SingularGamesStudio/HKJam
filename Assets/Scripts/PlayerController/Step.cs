@@ -20,7 +20,7 @@ public class Step : MonoBehaviour
     type Vertical, Horizontal;
 
     // const variables
-    const float cell_len = 3f;
+    const float cell_len = 3.2f;
     const float speed = 700f;
 
     void Awake()
@@ -31,16 +31,19 @@ public class Step : MonoBehaviour
 
     public void simple_forward()
     {
+        dp = Vector2.zero;
         Horizontal = type.Forward;
         position.x = obj.transform.position.x + cell_len;
     }
     public void simple_up()
     {
+        dp = Vector2.zero;
         Vertical = type.Up;
         position.y = obj.transform.position.y + cell_len;
     }
     public void simple_down()
     {
+        dp = Vector2.zero;
         Vertical = type.Down;
         position.y = obj.transform.position.y - cell_len;
     }
@@ -94,8 +97,11 @@ public class Step : MonoBehaviour
 
     void Update()
     {
-        obj.transform.position = new Vector2(
-            update_position(ref position.x, obj.transform.position.x, ref dp.x, ref Horizontal),
-            update_position(ref position.y, obj.transform.position.y, ref dp.y, ref Vertical));
+        if (Vertical == type.Down) {
+            Debug.Log("hhh");
+        }
+        float TempY = update_position(ref position.y, obj.transform.position.y, ref dp.y, ref Vertical);
+        float TempX = update_position(ref position.x, obj.transform.position.x, ref dp.x, ref Horizontal);
+        obj.transform.position = new Vector2(TempX, TempY);     
     }
 }
