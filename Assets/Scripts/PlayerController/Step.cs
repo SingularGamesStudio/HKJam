@@ -7,9 +7,8 @@ public class Step : MonoBehaviour
 {
     Vector2 dp;
     GameObject obj;
-    public static Step _step;
     Vector2 position;
-    enum type
+    public enum type
     {
         Up,
         Down,
@@ -25,7 +24,6 @@ public class Step : MonoBehaviour
 
     void Awake()
     {
-        _step = this;
         Vertical = Horizontal = type.Null;
     }
 
@@ -97,11 +95,8 @@ public class Step : MonoBehaviour
 
     void Update()
     {
-        if (Vertical == type.Down) {
-            Debug.Log("hhh");
-        }
         float TempY = update_position(ref position.y, obj.transform.position.y, ref dp.y, ref Vertical);
         float TempX = update_position(ref position.x, obj.transform.position.x, ref dp.x, ref Horizontal);
-        obj.transform.position = new Vector2(TempX, TempY);     
+        obj.transform.position = new Vector2(TempX, TempY);
     }
 }
