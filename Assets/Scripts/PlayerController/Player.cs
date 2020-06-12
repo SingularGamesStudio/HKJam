@@ -17,20 +17,6 @@ public class Player : MonoBehaviour
     
     // Update is called once per frame
     void Update(){
-        CurTimeout += Time.deltaTime;
-        if (CurTimeout < TurnTime){
-        }
-        else{
-            if (first){
-                Step._step.up();
-                first = false;
-            }
-            else{
-                Step._step.forward();
-            }
-            //go forward or fall from jump
-            CurTimeout = 0;
-            //genmap();
-        }
+         Step._step.forward();
     }
 }
